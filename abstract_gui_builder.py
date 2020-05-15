@@ -1,7 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import os
 from abc import ABCMeta, abstractmethod
 
 from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
+from logger import logger
 
 
 class AbstractGUIBuilder(QMainWindow):
@@ -12,9 +16,13 @@ class AbstractGUIBuilder(QMainWindow):
 
     def __init__(self):
         super().__init__()
+        logger.info('[*]初始化窗口')
         self.init_window()
+        logger.info('[*]初始化菜单栏')
         self.init_menu()
+        logger.info('[*]初始化状态栏')
         self.init_status_bar()
+        logger.info('[*]初始化中心区域')
         self.init_central_area()
 
     @abstractmethod
@@ -44,13 +52,6 @@ class AbstractGUIBuilder(QMainWindow):
         初始化中心区域
         """
         pass
-
-    @staticmethod
-    def assets_folder():
-        """
-        获取资源文件目录
-        """
-        return os.path.join(os.path.abspath(os.path.dirname(__file__)), 'assets')
 
     def center(self):
         """

@@ -9,7 +9,7 @@ class Const(object):
     常量
     """
     # 工程名
-    project_name = 'like_me_learn'
+    project_name = 'like-me-learn'
     # 根目录
     root_path = os.path.abspath(os.path.dirname(__file__))
     # 资源文件夹
@@ -20,3 +20,6 @@ class Const(object):
     window_icon_path = os.path.join(assets_folder, 'window_icon.png')
     # 退出图
     exit_img_path = os.path.join(assets_folder, 'exit.png')
+    # 系统托盘图
+    tray_icon_path = os.path.join(assets_folder, 'window_icon.png')
+

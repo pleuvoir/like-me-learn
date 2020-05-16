@@ -7,8 +7,8 @@ from time import time, sleep
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import QApplication, QSplashScreen
 
-from base_ import BaseGUI
 from configuration import Const
+from main_window_builder import MainWindow
 
 if __name__ == '__main__':
 
@@ -24,7 +24,7 @@ if __name__ == '__main__':
         sleep(0.001)
         app.processEvents()
 
-    gui = BaseGUI()
+    gui = MainWindow()
     gui.show()
     splash.finish(gui)
     sys.exit(app.exec_())

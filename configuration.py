@@ -10,16 +10,11 @@ class Const(object):
     """
     # 工程名
     project_name = 'like-me-learn'
-    # 根目录
-    root_path = os.path.abspath(os.path.dirname(__file__))
-    # 资源文件夹
-    assets_folder = os.path.join(root_path, 'assets')
     # 启动图
-    window_start_gif_path = os.path.join(assets_folder, 'window_start.gif')
+    window_start_gif_path = ':assets/window_start.png'
     # 窗口图
-    window_icon_path = os.path.join(assets_folder, 'window_icon.png')
+    window_icon_path = ':assets/window_icon.png'
     # 退出图
-    exit_img_path = os.path.join(assets_folder, 'exit.png')
+    exit_img_path = ':assets/exit.png'
     # 系统托盘图
-    tray_icon_path = os.path.join(assets_folder, 'window_icon.png')
-
+    tray_icon_path = ':assets/window_icon.png'

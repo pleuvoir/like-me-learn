@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
 
 from configuration import Const
 from logger import logger
-
+from tools import assets_qr
 
 class MainWindow(QMainWindow):
 

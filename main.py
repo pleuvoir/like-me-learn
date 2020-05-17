@@ -6,9 +6,8 @@ from time import time, sleep
 
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import QApplication, QSplashScreen
-
-from configuration import Const
-from main_window_builder import MainWindow
+from window_creator import MainWindow
+from tools.config import Const
 
 if __name__ == '__main__':
 
@@ -17,7 +16,7 @@ if __name__ == '__main__':
     app.setWindowIcon(QIcon(Const.window_icon_path))
 
     splash = QSplashScreen()
-    splash.setPixmap(QPixmap(Const.window_start_gif_path))
+    splash.setPixmap(QPixmap(Const.window_start_path))
     splash.show()
 
     while time() - start < 1:

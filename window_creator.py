@@ -5,25 +5,29 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAction, qApp, QApplication, QSystemTrayIcon
 from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
 
-from configuration import Const
-from logger import logger
-from tools import assets_qr
+from tools.config import Const
+from tools.logger import logger
+from componment.log_view import LogView
+
 
 class MainWindow(QMainWindow):
 
     def __init__(self):
         super().__init__()
 
-        logger.info('[*] 初始化窗口')
+        # 独立显示日志
+        self.log_view = LogView()
+
+        self.log_view.info('[*] 初始化窗口')
         self.init_window()
 
-        logger.info('[*] 初始化菜单栏')
+        self.log_view.info('[*] 初始化菜单栏')
         self.init_menu()
 
-        logger.info('[*] 初始化状态栏')
+        self.log_view.info('[*] 初始化状态栏')
         self.init_status_bar()
 
-        logger.info('[*] 初始化中心区域')
+        self.log_view.info('[*] 初始化中心区域')
         self.init_central_area()
 
     def init_window(self):
@@ -61,6 +65,13 @@ class MainWindow(QMainWindow):
         exit_act.setStatusTip('退出')
         exit_act.triggered.connect(qApp.quit)
         file_menu.addAction(exit_act)
+
+
+
+        log_act = QAction(QIcon(Const.exit_img_path), '&查看日志', self)
+        log_act.setStatusTip('查看日志')
+        log_act.triggered.connect(lambda: self.log_view.show())
+        file_menu.addAction(log_act)
 
     def init_status_bar(self):
         """

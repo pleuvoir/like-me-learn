@@ -5,9 +5,9 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAction, qApp, QApplication, QSystemTrayIcon
 from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
 
-from tools.config import Const
-from tools.logger import logger
 from componment.log_view import LogView
+from componment.splitter_view import SplitterView
+from tools.config import Const
 
 
 class MainWindow(QMainWindow):
@@ -34,7 +34,8 @@ class MainWindow(QMainWindow):
         """
         初始化窗口
         """
-        self.resize(1250, 780)
+        self.resize(1175, 685)
+        self.setMinimumSize(1050, 550)
         self.setWindowTitle('Learn like me')
         self.center()
 
@@ -45,6 +46,10 @@ class MainWindow(QMainWindow):
 
         self.tray_icon.activated.connect(self.onTrayIconActivated)
         self.tray_icon.show()
+
+        # 设置拆分窗口为中心布局
+        splitter_view = SplitterView()
+        self.setCentralWidget(splitter_view)
 
     def onTrayIconActivated(self, reason):
         """
@@ -65,8 +70,6 @@ class MainWindow(QMainWindow):
         exit_act.setStatusTip('退出')
         exit_act.triggered.connect(qApp.quit)
         file_menu.addAction(exit_act)
-
-
 
         log_act = QAction(QIcon(Const.exit_img_path), '&查看日志', self)
         log_act.setStatusTip('查看日志')

@@ -6,8 +6,9 @@ from time import time, sleep
 
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import QApplication, QSplashScreen
-from window_creator import MainWindow
+
 from tools.config import Const
+from window_creator import MainWindow
 
 if __name__ == '__main__':
 

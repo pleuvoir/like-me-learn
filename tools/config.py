@@ -19,6 +19,8 @@ class Const(object):
     exit_img_path = ':assets/exit.png'
     # 系统托盘图
     tray_icon_path = ':assets/window_icon.png'
+    # 左侧窗体图标
+    book_icon_path = ':assets/book.svg'
 
 
 class Global(object):

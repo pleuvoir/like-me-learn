@@ -4,5 +4,6 @@
     <file>../assets/window_icon.png</file>
     <file>../assets/exit.png</file>
     <file>../assets/window_icon.png</file>
+    <file>../assets/book.svg</file>
   </qresource>
 </RCC>

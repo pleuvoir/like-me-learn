@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from PyQt5.QtWidgets import QVBoxLayout, QWidget, QPushButton, QTextBrowser
+from PyQt5.QtWidgets import QVBoxLayout, QWidget, QPushButton, QTextBrowser, QDesktopWidget
 
 from tools.config import Const
 
@@ -23,7 +23,17 @@ class LogView(QWidget):
 
         self.setLayout(self.v_layout)
         self.resize(1200, 850)
+        self.center()
         self.setWindowTitle(Const.project_name)
 
     def info(self, text: str):
         self.browser.insertPlainText(text + '\n')
+
+    def center(self):
+        """
+        居中窗口
+        """
+        qr = self.frameGeometry()
+        cp = QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())

@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import sys
 
 from PyQt5.QtCore import Qt, QSize
-from PyQt5.QtGui import QIcon, QPixmap
-from PyQt5.QtWidgets import QHBoxLayout, QWidget, QApplication, QSplitter, QFrame, QVBoxLayout, QPushButton, QLabel
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QHBoxLayout, QWidget, QSplitter, QFrame, QVBoxLayout, QLabel
 
 from tools.config import Const
-from tools import assets  # 必须导入，替换:assets qrc资源
 
 
 class SplitterView(QWidget):
@@ -21,14 +19,17 @@ class SplitterView(QWidget):
         # 左侧面板
         self.left = QFrame()
         self.left.setFrameShape(QFrame.StyledPanel)
+        self.left.setMinimumSize(45, 685)
 
         # 中部面板
         self.middle = QFrame()
         self.middle.setFrameShape(QFrame.StyledPanel)
+        self.middle.setMinimumSize(625, 685)
 
         # 右侧面板
         self.right = QFrame()
         self.right.setFrameShape(QFrame.StyledPanel)
+        self.middle.setMinimumSize(800, 685)
 
         # 分割器
         splitter = QSplitter(Qt.Horizontal)
@@ -69,10 +70,3 @@ class SplitterView(QWidget):
         v_layout.addStretch(9)
 
         self.left.setLayout(v_layout)
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    view = SplitterView()
-    view.show()
-    sys.exit(app.exec_())

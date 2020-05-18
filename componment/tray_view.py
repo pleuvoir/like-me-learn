@@ -4,8 +4,7 @@
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QSystemTrayIcon
 
-from tools.config import Const
-from tools.config import Global
+from tools.config import Const, GlobalContext
 
 """
 系统托盘
@@ -28,4 +27,4 @@ class TrayView(QSystemTrayIcon):
         :param reason:  Trigger/MiddleClick
         """
         if reason == QSystemTrayIcon.Trigger:
-            Global.getMainWindow().show()
+            GlobalContext.main_window().show()

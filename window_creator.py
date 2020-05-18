@@ -8,8 +8,7 @@ from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
 from componment.log_view import LogView
 from componment.splitter_view import SplitterView
 from componment.tray_view import TrayView
-from tools.config import Const
-from tools.config import Global
+from tools.config import Const, GlobalContext
 
 
 class MainWindow(QMainWindow):
@@ -17,10 +16,16 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        # 独立显示日志
+        # 全局上下文
+        self.context = GlobalContext()
+
+        # 日志窗口
         self.log_view = LogView()
+        self.context.setup(Const.key_log_view, self.log_view)
+
         # 系统托盘
         self.tray_view = TrayView()
+        self.context.setup(Const.key_tray_view, self.tray_view)
 
         self.log_view.info('[*] 初始化窗口')
         self.init_window()
@@ -34,24 +39,16 @@ class MainWindow(QMainWindow):
         self.log_view.info('[*] 初始化中心区域')
         self.init_central_area()
 
-        # 保存一些全局对象，方便直接获取
-        glb = Global()
-        glb.setup(Const.key_main_window, self)
-        glb.setup(Const.key_log_view, self.log_view)
-        glb.setup(Const.key_tray_view, self.tray_view)
-
     def init_window(self):
         """
         初始化窗口
         """
-        self.resize(1175, 685)
-        self.setMinimumSize(1050, 550)
+        self.resize(Const.default_window_width, Const.default_window_height)
+        self.setMinimumSize(Const.min_window_width, Const.min_window_height)
+
         self.setWindowTitle('Learn like me')
         self.center()
-
-        # 设置拆分窗口为中心布局
-        splitter_view = SplitterView()
-        self.setCentralWidget(splitter_view)
+        self.context.setup(Const.key_main_window, self)
 
     def closeEvent(self, event):
         """
@@ -88,7 +85,9 @@ class MainWindow(QMainWindow):
         """
         初始化中心区域
         """
-        pass
+        # 设置拆分窗口为中心布局
+        splitter_view = SplitterView()
+        self.setCentralWidget(splitter_view)
 
     def center(self):
         """

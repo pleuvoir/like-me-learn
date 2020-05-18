@@ -4,10 +4,21 @@
 import importlib
 from collections import OrderedDict
 
+# 动态导入，不然格式化会删掉没有显式调用的代码
+importlib.import_module('tools.assets')
+
 
 class Const(object):
-    # 动态导入，不然格式化会删掉没有显式调用的代码
-    importlib.import_module('tools.assets')
+    # 默认窗口宽度
+    default_window_width = 1175
+    # 默认窗口高度
+    default_window_height = 685
+    # 最小窗口宽度
+    min_window_width = 1050
+    # 最小窗口高度
+    min_window_height = 550
+    # 左侧固定宽度
+    left_frame_width = 55
 
     # 工程名
     project_name = 'Like me learn'
@@ -24,8 +35,6 @@ class Const(object):
     # 左侧窗体图标
     book_icon_path = ':assets/book.svg'
 
-    # 全局对象
-
     # 主窗口
     key_main_window = 'main_window'
     # 日志窗口
@@ -34,28 +43,28 @@ class Const(object):
     key_tray_view = 'tray_view'
 
 
-class Global(object):
-    dict = OrderedDict()
+class GlobalContext(object):
+    _dict = OrderedDict()
 
     def __init__(self):
         super().__init__()
 
     @staticmethod
     def setup(key: str, value: object):
-        Global.dict[key] = value
+        GlobalContext._dict[key] = value
 
     @staticmethod
     def get_instance(key: str):
-        return Global.dict.get(key)
+        return GlobalContext._dict.get(key)
 
     @staticmethod
-    def getMainWindow():
-        return Global.get_instance(Const.key_main_window)
+    def main_window():
+        return GlobalContext.get_instance(Const.key_main_window)
 
     @staticmethod
-    def getLogView():
-        return Global.get_instance(Const.key_log_view)
+    def log_view():
+        return GlobalContext.get_instance(Const.key_log_view)
 
     @staticmethod
-    def getTrayView():
-        return Global.get_instance(Const.key_tray_view)
+    def tray_view():
+        return GlobalContext.get_instance(Const.key_tray_view)

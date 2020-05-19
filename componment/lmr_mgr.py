@@ -32,8 +32,8 @@ class LmrManager(QWidget):
         mr_splitter.insertWidget(0, middle_frame)
         mr_splitter.insertWidget(1, right_frame)
 
-        mr_splitter.setStretchFactor(0, 0)  # 这样最左边的栏不会因为全屏而变宽
-        mr_splitter.setStretchFactor(1, 0)
+        mr_splitter.setStretchFactor(0, 1)  # 全屏后保持1：4的比例，但是之前设置的最小宽度此时可能就比较小了
+        mr_splitter.setStretchFactor(1, 4)
 
         # 设置为不可拖动至隐藏
         mr_splitter.setCollapsible(0, False)

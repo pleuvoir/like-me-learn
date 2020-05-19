@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 
-from PyQt5.QtCore import QSize, Qt
+from PyQt5 import QtCore
+from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QPixmap, QCursor
-from PyQt5.QtWidgets import QFrame, QVBoxLayout, QLabel, QWidget
-from qtpy import QtCore
+from PyQt5.QtWidgets import QFrame, QVBoxLayout, QLabel
 
 from tools.config import Const
 
@@ -21,17 +21,25 @@ class LeftFrame(QFrame):
 
         v_layout = QVBoxLayout()
 
-        label_img = QLabel()
+        label_img_book = QLabel()
         origin_icon = QPixmap(Const.book_icon_path)
         scaled = origin_icon.scaled(QSize(35, 35))
+        label_img_book.setPixmap(scaled)
+        label_img_book.setFrameStyle(QFrame.NoFrame)
+        label_img_book.setScaledContents(True)
+        label_img_book.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
 
-        label_img.setPixmap(scaled)
-        label_img.setFrameStyle(QFrame.NoFrame)
-        label_img.setScaledContents(True)
-        label_img.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+        # 设置
+        label_img_setting = QLabel()
+        label_img_setting.setPixmap(QPixmap(Const.setting_icon_path).scaled(QSize(35, 35)))
+        label_img_setting.setFrameStyle(QFrame.NoFrame)
+        label_img_setting.setScaledContents(True)
+        label_img_setting.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
 
         v_layout.addStretch(1)
-        v_layout.addWidget(label_img)
-        v_layout.addStretch(9)
+        v_layout.addWidget(label_img_book)
+        v_layout.addStretch(20)
+        v_layout.addWidget(label_img_setting)
+        v_layout.addStretch(1)
 
         self.setLayout(v_layout)

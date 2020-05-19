@@ -37,9 +37,13 @@ class Const(object):
     # 系统托盘图
     tray_icon_path = ':assets/window_icon.png'
     # 左侧窗体图标
-    book_icon_path = ':assets/book.svg'
+    book_icon_path = ':assets/book2.svg'
+    # 左侧设置图标
+    setting_icon_path = ':assets/setting2.svg'
     # 中部增加图标
     add_icon_path = ':assets/add.svg'
+
+    right_bg_path = ':assets/right_bg.png'
 
     # 主窗口
     key_main_window = 'main_window'

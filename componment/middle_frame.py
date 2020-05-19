@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+from PyQt5 import QtCore
 from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QPixmap, QCursor
 from PyQt5.QtWidgets import QFrame, QVBoxLayout, QLabel, QHBoxLayout, QScrollArea
-from qtpy import QtCore
 
 from tools.config import Const
 

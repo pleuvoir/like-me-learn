@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+from PyQt5 import QtCore
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAction, qApp, QApplication
 from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
-from qtpy import QtCore
 
 from componment.lmr_mgr import LmrManager
 from componment.log_view import LogView

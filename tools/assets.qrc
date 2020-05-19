@@ -5,7 +5,18 @@
     <file>../assets/exit.svg</file>
     <file>../assets/window_icon.png</file>
     <file>../assets/book.svg</file>
+    <file>../assets/book1.svg</file>
+    <file>../assets/book2.svg</file>
     <file>../assets/log.svg</file>
     <file>../assets/add.svg</file>
+    <file>../assets/setting.svg</file>
+    <file>../assets/setting2.svg</file>
+    <file>../assets/right_bg.png</file>
+    <file>../assets/1.png</file>
+    <file>../assets/2.png</file>
+    <file>../assets/3.png</file>
+    <file>../assets/4.png</file>
+    <file>../assets/5.png</file>
+    <file>../assets/6.png</file>
   </qresource>
 </RCC>

@@ -6,5 +6,6 @@
     <file>../assets/window_icon.png</file>
     <file>../assets/book.svg</file>
     <file>../assets/log.svg</file>
+    <file>../assets/add.svg</file>
   </qresource>
 </RCC>

@@ -19,6 +19,10 @@ class Const(object):
     min_window_height = 550
     # 左侧固定宽度
     left_frame_width = 55
+    # 中部宽度
+    middle_frame_width = 450
+    # 右侧宽度
+    right_frame_width = default_window_width - left_frame_width - middle_frame_width
 
     # 工程名
     project_name = 'Like me learn'
@@ -34,6 +38,8 @@ class Const(object):
     tray_icon_path = ':assets/window_icon.png'
     # 左侧窗体图标
     book_icon_path = ':assets/book.svg'
+    # 中部增加图标
+    add_icon_path = ':assets/add.svg'
 
     # 主窗口
     key_main_window = 'main_window'

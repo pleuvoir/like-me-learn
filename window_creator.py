@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QAction, qApp
+from PyQt5.QtWidgets import QAction, qApp, QApplication
 from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
+from qtpy import QtCore
 
+from componment.lmr_mgr import LmrManager
 from componment.log_view import LogView
-from componment.splitter_view import SplitterView
 from componment.tray_view import TrayView
 from tools.config import Const, GlobalContext
 
@@ -45,12 +46,14 @@ class MainWindow(QMainWindow):
         """
         self.resize(Const.default_window_width, Const.default_window_height)
         self.setMinimumSize(Const.min_window_width, Const.min_window_height)
-
         self.setWindowTitle('Learn like me')
         self.center()
+        self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+      #  QApplication.setQuitOnLastWindowClosed(True)  # 最后一个窗口点击关闭后不退出程序
         self.context.setup(Const.key_main_window, self)
 
     def closeEvent(self, event):
+        print('关闭')
         """
         点击X时隐藏主面板并显示系统托盘
         """
@@ -85,9 +88,8 @@ class MainWindow(QMainWindow):
         """
         初始化中心区域
         """
-        # 设置拆分窗口为中心布局
-        splitter_view = SplitterView()
-        self.setCentralWidget(splitter_view)
+        lmr_manager = LmrManager()
+        self.setCentralWidget(lmr_manager)
 
     def center(self):
         """

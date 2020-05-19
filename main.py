@@ -20,7 +20,7 @@ if __name__ == '__main__':
     splash.setPixmap(QPixmap(Const.window_start_path))
     splash.show()
 
-    while time() - start < 1:
+    while time() - start < 0.5:
         sleep(0.001)
         app.processEvents()
 

@@ -22,7 +22,7 @@ class LogView(QWidget):
         self.v_layout.addWidget(self.clear_btn)
 
         self.setLayout(self.v_layout)
-        self.resize(1200, 850)
+        self.resize(600, 425)
         self.center()
         self.setWindowTitle(Const.project_name)
 

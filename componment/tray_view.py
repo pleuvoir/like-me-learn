@@ -15,6 +15,7 @@ class TrayView(QSystemTrayIcon):
 
     def __init__(self):
         super(TrayView, self).__init__()
+        self.setParent(GlobalContext.main_window())
         # 设置托盘图标
         self.setIcon(QIcon(Const.tray_icon_path))
         self.setToolTip(Const.project_name)

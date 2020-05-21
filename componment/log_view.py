@@ -27,7 +27,7 @@ class LogView(QWidget):
         self.setWindowTitle(Const.project_name)
 
     def info(self, text: str):
-        self.browser.insertPlainText(text + '\n')
+        self.browser.append(text)
 
     def center(self):
         """

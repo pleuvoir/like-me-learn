@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5 import QtCore
-from PyQt5.QtCore import QSize
+from PyQt5.QtCore import QSize, Qt, QStringListModel
 from PyQt5.QtGui import QPixmap, QCursor
-from PyQt5.QtWidgets import QFrame, QVBoxLayout, QLabel, QHBoxLayout, QScrollArea, QListWidget, QListWidgetItem
+from PyQt5.QtWidgets import QFrame, QVBoxLayout, QLabel, QHBoxLayout, QScrollArea, QListWidget, QListWidgetItem, \
+    QListView
 
 from tools.config import Const
 
@@ -37,13 +38,14 @@ class MiddleFrame(QFrame):
         h_layout.addWidget(label_img)
 
         # 下面的滚动卡片区域
-        scroll_area = QScrollArea()
-        card_list_widget = QListWidget(parent=scroll_area)
-        for i in range(6):
-            card_list_widget.addItem(QListWidgetItem('Item {}'.format(i)))
+        card_list_view = QListView()
+        card_list_view.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)  # 关闭横向
 
+        model = QStringListModel()
+        model.setStringList(['item %s' % i for i in range(60)])
+        card_list_view.setModel(model)
 
         v_layout.addLayout(h_layout)
-        v_layout.addWidget(scroll_area)
+        v_layout.addWidget(card_list_view)
 
         self.setLayout(v_layout)

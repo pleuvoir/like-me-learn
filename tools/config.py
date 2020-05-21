@@ -5,7 +5,10 @@ import importlib
 from collections import OrderedDict
 
 # 动态导入，不然格式化会删掉没有显式调用的代码
-importlib.import_module('tools.assets')
+try:
+    importlib.import_module('tools.assets')
+except ImportError as e:
+    from tools import assets
 
 
 class Const(object):

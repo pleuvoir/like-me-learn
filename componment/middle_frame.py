@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from PyQt5 import QtCore
-from PyQt5.QtCore import QSize, Qt, QStringListModel
-from PyQt5.QtGui import QPixmap, QCursor
-from PyQt5.QtWidgets import QFrame, QVBoxLayout, QLabel, QHBoxLayout, QScrollArea, QListWidget, QListWidgetItem, \
-    QListView
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QFrame, QVBoxLayout, QLabel, QHBoxLayout, QScrollArea, QWidget, QGridLayout
 
+from componment.card_widget import CardWidget
+from helper.qlabel_img import QLabelImg
 from tools.config import Const
 
 
@@ -25,27 +24,35 @@ class MiddleFrame(QFrame):
         # 水平布局，最上面
         h_layout = QHBoxLayout()
         label_title = QLabel('知识库')
-        label_img = QLabel()
-        origin_icon = QPixmap(Const.add_icon_path)
-        scaled = origin_icon.scaled(QSize(35, 35))
-        label_img.setPixmap(scaled)
-        label_img.setFrameStyle(QFrame.NoFrame)
-        label_img.setScaledContents(True)
-        label_img.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+
+        # 重写点击事件
+        label_img = QLabelImg(img_path=Const.add_icon_path, press_event_fn=lambda: self.add_btn_fn())
 
         h_layout.addWidget(label_title)
         h_layout.addStretch(1)
         h_layout.addWidget(label_img)
 
-        # 下面的滚动卡片区域
-        card_list_view = QListView()
-        card_list_view.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)  # 关闭横向
+        # 滚动条区域指定一个父面板，然后往这个父面板上添加子面板
+        parent_card_widget = QWidget()
+        card_area = QScrollArea()
+        card_area.setWidget(parent_card_widget)  # 绑定滚动条和父面板
+        card_area.setWidgetResizable(True)
+        card_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)  # 关闭横向
 
-        model = QStringListModel()
-        model.setStringList(['item %s' % i for i in range(60)])
-        card_list_view.setModel(model)
+        # 网格布局
+        self.q_grid_layout = QGridLayout(parent_card_widget)
+        self.q_grid_layout.setSpacing(10)
+
+        for i in range(10):
+            self.q_grid_layout.addWidget(CardWidget(), i, 0)
 
         v_layout.addLayout(h_layout)
-        v_layout.addWidget(card_list_view)
+        v_layout.addWidget(card_area)
 
         self.setLayout(v_layout)
+
+    def add_btn_fn(self):
+        """
+        点击新增按钮增加一格
+        """
+        self.q_grid_layout.addWidget(CardWidget(), 6, 0)

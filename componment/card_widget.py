@@ -3,19 +3,23 @@
 import typing
 
 from PyQt5 import QtCore
-from PyQt5.QtWidgets import QWidget, QListWidgetItem, QListWidget,QGridLayout
+from PyQt5.QtWidgets import QWidget, QListWidgetItem, QListWidget, QGridLayout, QLabel, QFrame
 
 
-class CardWidget(QListWidgetItem):
+class CardWidget(QFrame):
 
-    def __init__(self, parent: QListWidget):
+    def __init__(self):
         super(CardWidget, self).__init__()
 
-        self.parent = parent
-
+        self.setFixedHeight(125)
+        self.setStyleSheet("background-color:white")
         self.grid_layout = QGridLayout()
-        # 名称
-        self.grid_layout.addWidget('名称', 0, 0)
-        # 简介
-        self.grid_layout.addWidget('', 0, 0)
 
+        name_label = QLabel('名称')
+        desc_label = QLabel('好烦')
+        # 名称
+        self.grid_layout.addWidget(name_label, 0, 0)
+        # 简介
+        self.grid_layout.addWidget(desc_label, 1, 0)
+
+        self.setLayout(self.grid_layout)

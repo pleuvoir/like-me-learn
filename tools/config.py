@@ -23,7 +23,7 @@ class Const(object):
     # 左侧固定宽度
     left_frame_width = 55
     # 中部宽度
-    middle_frame_width = 450
+    middle_frame_width = 465
     # 右侧宽度
     right_frame_width = default_window_width - left_frame_width - middle_frame_width
 

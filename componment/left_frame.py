@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 
-from PyQt5 import QtCore
-from PyQt5.QtCore import QSize
-from PyQt5.QtGui import QPixmap, QCursor
-from PyQt5.QtWidgets import QFrame, QVBoxLayout, QLabel
+from PyQt5.QtWidgets import QFrame, QVBoxLayout
 
+from componment.setting_widget import SettingWidget
+from helper.qlabel_img import QLabelImg
+from helper.qpushbutton_img import QPushButtonImg
 from tools.config import Const
 
 """
@@ -21,20 +21,11 @@ class LeftFrame(QFrame):
 
         v_layout = QVBoxLayout()
 
-        label_img_book = QLabel()
-        origin_icon = QPixmap(Const.book_icon_path)
-        scaled = origin_icon.scaled(QSize(35, 35))
-        label_img_book.setPixmap(scaled)
-        label_img_book.setFrameStyle(QFrame.NoFrame)
-        label_img_book.setScaledContents(True)
-        label_img_book.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+        label_img_book = QLabelImg(Const.book_icon_path)
 
         # 设置
-        label_img_setting = QLabel()
-        label_img_setting.setPixmap(QPixmap(Const.setting_icon_path).scaled(QSize(35, 35)))
-        label_img_setting.setFrameStyle(QFrame.NoFrame)
-        label_img_setting.setScaledContents(True)
-        label_img_setting.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+        setting_widget = SettingWidget()
+        label_img_setting = QPushButtonImg(img_path=Const.setting_icon_path, press_event_fn=lambda: setting_widget.show())
 
         v_layout.addStretch(1)
         v_layout.addWidget(label_img_book)

@@ -23,12 +23,12 @@ class MainWindow(QMainWindow):
         self.log_view = LogView()
         self.context.setup(Const.key_log_view, self.log_view)
 
+        self.log_view.info('[*] 初始化窗口')
+        self.init_window()
+
         # 系统托盘
         self.tray_view = TrayView()
         self.context.setup(Const.key_tray_view, self.tray_view)
-
-        self.log_view.info('[*] 初始化窗口')
-        self.init_window()
 
         self.log_view.info('[*] 初始化菜单栏')
         self.init_menu()
@@ -48,7 +48,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle('Learn like me')
         self.center()
         self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
-      #  QApplication.setQuitOnLastWindowClosed(True)  # 最后一个窗口点击关闭后不退出程序
+        #  QApplication.setQuitOnLastWindowClosed(True)  # 最后一个窗口点击关闭后不退出程序
         self.context.setup(Const.key_main_window, self)
 
     def closeEvent(self, event):
@@ -66,16 +66,17 @@ class MainWindow(QMainWindow):
         """
         menubar = self.menuBar()
         file_menu = menubar.addMenu('&文件')
-        exit_act = QAction(QIcon(Const.exit_img_path), '&退出', self)
-        exit_act.setShortcut('Ctrl+Q')
-        exit_act.setStatusTip('退出')
-        exit_act.triggered.connect(qApp.quit)
-        file_menu.addAction(exit_act)
 
         log_act = QAction(QIcon(Const.log_img_path), '&查看日志', self)
         log_act.setStatusTip('查看日志')
         log_act.triggered.connect(lambda: self.log_view.show())
         file_menu.addAction(log_act)
+
+        exit_act = QAction(QIcon(Const.exit_img_path), '&退出', self)
+        exit_act.setShortcut('Ctrl+Q')
+        exit_act.setStatusTip('退出')
+        exit_act.triggered.connect(qApp.quit)
+        file_menu.addAction(exit_act)
 
     def init_status_bar(self):
         """

@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import typing
 
-from PyQt5 import QtCore
-from PyQt5.QtWidgets import QWidget, QListWidgetItem, QListWidget, QGridLayout, QLabel, QFrame
+from PyQt5.QtWidgets import QGridLayout, QLabel, QFrame
 
 
 class CardWidget(QFrame):

@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 from PyQt5 import QtCore
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QAction, qApp, QApplication
+from PyQt5.QtWidgets import QAction, qApp, QApplication, QWidget
 from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
 
 from componment.lmr_mgr import LmrManager
 from componment.log_view import LogView
+from componment.middle_add_widget import MiddleAddWidget
 from componment.tray_view import TrayView
 from tools.config import Const, GlobalContext
 
@@ -52,7 +53,6 @@ class MainWindow(QMainWindow):
         self.context.setup(Const.key_main_window, self)
 
     def closeEvent(self, event):
-        print('关闭')
         """
         点击X时隐藏主面板并显示系统托盘
         """
@@ -92,6 +92,13 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(lmr_manager)
         self.context.setup(Const.key_lmr_manager, lmr_manager)
 
+        self.middle_add_widget = MiddleAddWidget(self)
+
+
+        self.middle_add_widget.move(350,30)
+
+
+
     def center(self):
         """
         居中窗口
@@ -100,3 +107,4 @@ class MainWindow(QMainWindow):
         cp = QDesktopWidget().availableGeometry().center()
         qr.moveCenter(cp)
         self.move(qr.topLeft())
+        print(qr.topLeft())

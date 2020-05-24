@@ -30,8 +30,7 @@ class MiddleFrame(QFrame):
         label_img = QLabelImg(img_path=Const.add_icon_path, press_event_fn=lambda: self.add_btn_fn())
 
         # 加号点击后出现的面板
-        self.middle_add_widget = MiddleAddWidget()
-
+    #    self.middle_add_widget = MiddleAddWidget()
 
 
         h_layout.addWidget(label_title)

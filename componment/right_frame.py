@@ -16,7 +16,7 @@ class RightFrame(QFrame):
 
         #
         self.setObjectName("RightFrame")
-        self.setStyleSheet("#RightFrame{border-image:url(:assets/right_bg.png);}")
+     #   self.setStyleSheet("#RightFrame{border-image:url(:assets/right_bg.png);}")
 
     # def paintEvent(self, event):
     #     painter = QPainter(self)

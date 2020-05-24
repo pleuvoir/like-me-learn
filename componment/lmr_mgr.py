@@ -14,9 +14,6 @@ class LmrManager(QWidget):
     def __init__(self):
         super(LmrManager, self).__init__()
 
-        # 设置当前面板和主窗口一般大
-      #  self.setGeometry(GlobalContext.main_window().frameGeometry())
-
         h_layout = QHBoxLayout()
 
         left_frame = LeftFrame()

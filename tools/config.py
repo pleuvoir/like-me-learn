@@ -50,6 +50,8 @@ class Const(object):
 
     # 主窗口
     key_main_window = 'main_window'
+    # 中心区域
+    key_lmr_manager = 'lmr_manager'
     # 日志窗口
     key_log_view = 'log_view'
     # 系统托盘
@@ -73,6 +75,10 @@ class GlobalContext(object):
     @staticmethod
     def main_window():
         return GlobalContext.get_instance(Const.key_main_window)
+
+    @staticmethod
+    def lmr_manager():
+        return GlobalContext.get_instance(Const.key_lmr_manager)
 
     @staticmethod
     def log_view():

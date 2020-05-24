@@ -47,7 +47,7 @@ class MainWindow(QMainWindow):
         self.setMinimumSize(Const.min_window_width, Const.min_window_height)
         self.setWindowTitle('Learn like me')
         self.center()
-        self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+     #   self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
         #  QApplication.setQuitOnLastWindowClosed(True)  # 最后一个窗口点击关闭后不退出程序
         self.context.setup(Const.key_main_window, self)
 
@@ -90,6 +90,7 @@ class MainWindow(QMainWindow):
         """
         lmr_manager = LmrManager()
         self.setCentralWidget(lmr_manager)
+        self.context.setup(Const.key_lmr_manager, lmr_manager)
 
     def center(self):
         """

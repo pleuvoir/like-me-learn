@@ -11,18 +11,18 @@ class LogView(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.browser = QTextBrowser(self)
+        self.browser = QTextBrowser()
         self.browser.setPlaceholderText('程序运行日志')
 
-        self.clear_btn = QPushButton('清空', self)
+        self.clear_btn = QPushButton('清空')
         self.clear_btn.clicked.connect(lambda: self.browser.setText(''))
 
         self.v_layout = QVBoxLayout()
         self.v_layout.addWidget(self.browser)
         self.v_layout.addWidget(self.clear_btn)
 
-        self.setLayout(self.v_layout)
         self.resize(600, 425)
+        self.setLayout(self.v_layout)
         self.center()
         self.setWindowTitle(Const.project_name)
         self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)

@@ -92,10 +92,8 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(lmr_manager)
         self.context.setup(Const.key_lmr_manager, lmr_manager)
 
-        self.middle_add_widget = MiddleAddWidget(self)
+        self.middle_add_widget = MiddleAddWidget(lmr_manager)
 
-
-        self.middle_add_widget.move(350,30)
 
 
 

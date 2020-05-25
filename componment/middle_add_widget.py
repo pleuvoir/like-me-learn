@@ -2,13 +2,10 @@
 # -*- coding: utf-8 -*-
 
 
-from PyQt5 import QtCore
 from PyQt5.QtCore import Qt, QPoint
-from PyQt5.QtGui import QIcon, QCursor
-from PyQt5.QtWidgets import QWidget, QAction, QVBoxLayout, QLabel, QFrame, QHBoxLayout, QLineEdit, QPushButton, \
-    QTextEdit, QDesktopWidget
-
-from tools.config import Const, GlobalContext
+from PyQt5.QtGui import QCursor
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, \
+    QTextEdit
 
 """
 这个窗口应该依附于中心窗口布局
@@ -45,8 +42,12 @@ class MiddleAddWidget(QWidget):
 
         self.setLayout(self.v_layout)
 
-        self.show()
+        # 父窗体中心位置
+        lmr_manager_center = parent.frameGeometry().center()
 
+        self.move(QPoint(lmr_manager_center.x(), 0))
+
+        self.show()
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:

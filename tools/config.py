@@ -58,6 +58,8 @@ class Const(object):
     key_tray_view = 'tray_view'
     # 中心区域
     key_add_dialog = 'add_dialog'
+    # 中部
+    key_middle_frame = 'middle_frame'
 
 
 class GlobalContext(object):
@@ -93,3 +95,7 @@ class GlobalContext(object):
     @staticmethod
     def add_dialog():
         return GlobalContext.get_instance(Const.key_add_dialog)
+
+    @staticmethod
+    def middle_frame():
+        return GlobalContext.get_instance(Const.key_middle_frame)

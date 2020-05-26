@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+from PyQt5 import QtCore
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QAction, qApp
+from PyQt5.QtWidgets import QAction, qApp, QApplication
 from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
 
 from componment.lmr_mgr import LmrManager
@@ -48,8 +48,8 @@ class MainWindow(QMainWindow):
         self.setMinimumSize(Const.min_window_width, Const.min_window_height)
         self.setWindowTitle('Learn like me')
         self.center()
-        #   self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
-        #  QApplication.setQuitOnLastWindowClosed(True)  # 最后一个窗口点击关闭后不退出程序
+        self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+        QApplication.setQuitOnLastWindowClosed(True)  # 最后一个窗口点击关闭后不退出程序
         self.context.setup(Const.key_main_window, self)
 
     def closeEvent(self, event):
@@ -91,6 +91,7 @@ class MainWindow(QMainWindow):
         lmr_manager = LmrManager()
         self.setCentralWidget(lmr_manager)
         self.context.setup(Const.key_lmr_manager, lmr_manager)
+        self.context.setup(Const.key_middle_frame, lmr_manager.middle_frame)
         # 加号点击后出现的面板
         middle_add_dialog = MiddleAddDialog(lmr_manager)
         self.context.setup(Const.key_add_dialog, middle_add_dialog)

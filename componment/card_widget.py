@@ -6,15 +6,14 @@ from PyQt5.QtWidgets import QGridLayout, QLabel, QFrame
 
 class CardWidget(QFrame):
 
-    def __init__(self):
+    def __init__(self, name: str, desc: str):
         super(CardWidget, self).__init__()
 
-        self.setFixedHeight(125)
-        self.setStyleSheet("background-color:white")
+     #   self.setStyleSheet("background-color:white")
         self.grid_layout = QGridLayout()
 
-        name_label = QLabel('名称')
-        desc_label = QLabel('好烦')
+        name_label = QLabel(name)
+        desc_label = QLabel(desc)
         # 名称
         self.grid_layout.addWidget(name_label, 0, 0)
         # 简介

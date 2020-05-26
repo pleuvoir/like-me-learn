@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import QApplication, QSplashScreen
 
 from tools.config import Const
 from window_creator import MainWindow
+import qdarkstyle
 
 if __name__ == '__main__':
 
@@ -19,8 +20,9 @@ if __name__ == '__main__':
     splash = QSplashScreen()
     splash.setPixmap(QPixmap(Const.window_start_path))
     splash.show()
+    app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
 
-    while time() - start < 0.5:
+    while time() - start < 0.8:
         sleep(0.001)
         app.processEvents()
 

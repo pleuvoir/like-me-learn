@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-
 from PyQt5.QtCore import Qt, QPoint
 from PyQt5.QtWidgets import QVBoxLayout, QLabel, QLineEdit, QPushButton, \
-    QTextEdit, QDialog
+    QTextEdit, QDialog, QHBoxLayout
+
+from componment.card_widget import CardWidget
+from tools.config import GlobalContext
 
 """
 这个窗口应该依附于中心窗口布局
 """
+
 
 class MiddleAddDialog(QDialog):
 
     def __init__(self, parent):
         super(MiddleAddDialog, self).__init__()
 
-        self.setStyleSheet("background-color:white")
         self.setFixedSize(425, 325)
         self.setWindowFlags(Qt.CustomizeWindowHint | Qt.FramelessWindowHint)
         # 设置窗口为模态，用户只有关闭弹窗后，才能关闭主界面
@@ -28,14 +30,20 @@ class MiddleAddDialog(QDialog):
         self.desc_label = QLabel('简介:')
         self.desc_line = QTextEdit()
 
+        self.h_layout = QHBoxLayout()
         self.add_btn = QPushButton('新建')
+        self.add_btn.clicked.connect(lambda: self.add_slot())
+        self.cancel_btn = QPushButton('取消')
+        self.cancel_btn.clicked.connect(lambda: self.cancel_slot())
+        self.h_layout.addWidget(self.cancel_btn)
+        self.h_layout.addWidget(self.add_btn)
 
         self.v_layout = QVBoxLayout()
         self.v_layout.addWidget(self.name_label)
         self.v_layout.addWidget(self.name_line)
         self.v_layout.addWidget(self.desc_label)
         self.v_layout.addWidget(self.desc_line)
-        self.v_layout.addWidget(self.add_btn)
+        self.v_layout.addLayout(self.h_layout)
 
         self.setLayout(self.v_layout)
 
@@ -43,23 +51,17 @@ class MiddleAddDialog(QDialog):
         lmr_manager_center = parent.frameGeometry().center()
 
         self.move(QPoint(lmr_manager_center.x(), 0))
-
         # 设置了父窗体后默认此组件默认会显示，这里隐藏下
-        self.hide()
+        self.close()
 
+    def cancel_slot(self):
+        self.name_line.setText('')
+        self.desc_line.setText('')
+        self.close()
 
-    # def mousePressEvent(self, event):
-    #     if event.button() == Qt.LeftButton:
-    #         self.m_flag = True
-    #         self.m_Position = event.globalPos() - self.pos()
-    #         event.accept()
-    #         self.setCursor(QCursor(Qt.OpenHandCursor))
-    #
-    # def mouseMoveEvent(self, QMouseEvent):
-    #     if Qt.LeftButton and self.m_flag:
-    #         self.move(QMouseEvent.globalPos() - self.m_Position)
-    #         QMouseEvent.accept()
-    #
-    # def mouseReleaseEvent(self, QMouseEvent):
-    #     self.m_flag = False
-    #     self.setCursor(QCursor(Qt.ArrowCursor))
+    def add_slot(self):
+        GlobalContext.middle_frame().q_v_layout.addWidget(
+            CardWidget(self.name_line.text(), self.desc_line.toPlainText()))
+        self.name_line.setText('')
+        self.desc_line.setText('')
+        self.close()

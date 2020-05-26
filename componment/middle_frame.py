@@ -40,11 +40,11 @@ class MiddleFrame(QFrame):
         card_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)  # 关闭横向
 
         # 网格布局
-        self.q_grid_layout = QGridLayout(parent_card_widget)
-        self.q_grid_layout.setSpacing(10)
+        self.q_v_layout = QVBoxLayout(parent_card_widget)
+        self.q_v_layout.setSpacing(10)
 
-        for i in range(10):
-            self.q_grid_layout.addWidget(CardWidget(), i, 0)
+        for i in range(5):
+            self.q_v_layout.addWidget(CardWidget(f'{i}标题', f'{i}描述'))
 
         v_layout.addLayout(h_layout)
         v_layout.addWidget(card_area)

@@ -3,27 +3,24 @@
 
 
 from PyQt5.QtCore import Qt, QPoint
-from PyQt5.QtGui import QCursor
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, \
-    QTextEdit
+from PyQt5.QtWidgets import QVBoxLayout, QLabel, QLineEdit, QPushButton, \
+    QTextEdit, QDialog
 
 """
 这个窗口应该依附于中心窗口布局
 """
 
-
-class MiddleAddWidget(QWidget):
+class MiddleAddDialog(QDialog):
 
     def __init__(self, parent):
+        super(MiddleAddDialog, self).__init__()
 
-        super(MiddleAddWidget, self).__init__()
-
-        self.setParent(parent)
         self.setStyleSheet("background-color:white")
-        self.setWindowFlags(Qt.FramelessWindowHint)
-        self.setFixedSize(225, 325)
+        self.setFixedSize(425, 325)
+        self.setWindowFlags(Qt.CustomizeWindowHint | Qt.FramelessWindowHint)
         # 设置窗口为模态，用户只有关闭弹窗后，才能关闭主界面
         self.setWindowModality(Qt.ApplicationModal)
+        self.setParent(parent)
 
         self.name_label = QLabel('名称:')
         self.name_line = QLineEdit()
@@ -47,20 +44,22 @@ class MiddleAddWidget(QWidget):
 
         self.move(QPoint(lmr_manager_center.x(), 0))
 
-        self.show()
+        # 设置了父窗体后默认此组件默认会显示，这里隐藏下
+        self.hide()
 
-    def mousePressEvent(self, event):
-        if event.button() == Qt.LeftButton:
-            self.m_flag = True
-            self.m_Position = event.globalPos() - self.pos()
-            event.accept()
-            self.setCursor(QCursor(Qt.OpenHandCursor))
 
-    def mouseMoveEvent(self, QMouseEvent):
-        if Qt.LeftButton and self.m_flag:
-            self.move(QMouseEvent.globalPos() - self.m_Position)
-            QMouseEvent.accept()
-
-    def mouseReleaseEvent(self, QMouseEvent):
-        self.m_flag = False
-        self.setCursor(QCursor(Qt.ArrowCursor))
+    # def mousePressEvent(self, event):
+    #     if event.button() == Qt.LeftButton:
+    #         self.m_flag = True
+    #         self.m_Position = event.globalPos() - self.pos()
+    #         event.accept()
+    #         self.setCursor(QCursor(Qt.OpenHandCursor))
+    #
+    # def mouseMoveEvent(self, QMouseEvent):
+    #     if Qt.LeftButton and self.m_flag:
+    #         self.move(QMouseEvent.globalPos() - self.m_Position)
+    #         QMouseEvent.accept()
+    #
+    # def mouseReleaseEvent(self, QMouseEvent):
+    #     self.m_flag = False
+    #     self.setCursor(QCursor(Qt.ArrowCursor))

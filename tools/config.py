@@ -56,6 +56,8 @@ class Const(object):
     key_log_view = 'log_view'
     # 系统托盘
     key_tray_view = 'tray_view'
+    # 中心区域
+    key_add_dialog = 'add_dialog'
 
 
 class GlobalContext(object):
@@ -87,3 +89,7 @@ class GlobalContext(object):
     @staticmethod
     def tray_view():
         return GlobalContext.get_instance(Const.key_tray_view)
+
+    @staticmethod
+    def add_dialog():
+        return GlobalContext.get_instance(Const.key_add_dialog)

@@ -6,7 +6,6 @@ from PyQt5.QtWidgets import QWidget, QHBoxLayout, QSplitter
 from componment.left_frame import LeftFrame
 from componment.middle_frame import MiddleFrame
 from componment.right_frame import RightFrame
-from tools.config import GlobalContext
 
 
 class LmrManager(QWidget):

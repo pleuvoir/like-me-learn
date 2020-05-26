@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from PyQt5 import QtCore
+
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QAction, qApp, QApplication, QWidget
+from PyQt5.QtWidgets import QAction, qApp
 from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
 
 from componment.lmr_mgr import LmrManager
 from componment.log_view import LogView
-from componment.middle_add_widget import MiddleAddWidget
+from componment.middle_add_widget import MiddleAddDialog
 from componment.tray_view import TrayView
 from tools.config import Const, GlobalContext
 
@@ -48,7 +48,7 @@ class MainWindow(QMainWindow):
         self.setMinimumSize(Const.min_window_width, Const.min_window_height)
         self.setWindowTitle('Learn like me')
         self.center()
-     #   self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+        #   self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
         #  QApplication.setQuitOnLastWindowClosed(True)  # 最后一个窗口点击关闭后不退出程序
         self.context.setup(Const.key_main_window, self)
 
@@ -91,11 +91,9 @@ class MainWindow(QMainWindow):
         lmr_manager = LmrManager()
         self.setCentralWidget(lmr_manager)
         self.context.setup(Const.key_lmr_manager, lmr_manager)
-
-        self.middle_add_widget = MiddleAddWidget(lmr_manager)
-
-
-
+        # 加号点击后出现的面板
+        middle_add_dialog = MiddleAddDialog(lmr_manager)
+        self.context.setup(Const.key_add_dialog, middle_add_dialog)
 
     def center(self):
         """
@@ -105,4 +103,3 @@ class MainWindow(QMainWindow):
         cp = QDesktopWidget().availableGeometry().center()
         qr.moveCenter(cp)
         self.move(qr.topLeft())
-        print(qr.topLeft())

@@ -5,9 +5,8 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QFrame, QVBoxLayout, QLabel, QHBoxLayout, QScrollArea, QWidget, QGridLayout
 
 from componment.card_widget import CardWidget
-from componment.middle_add_widget import MiddleAddWidget
 from helper.qlabel_img import QLabelImg
-from tools.config import Const
+from tools.config import Const, GlobalContext
 
 
 class MiddleFrame(QFrame):
@@ -28,10 +27,6 @@ class MiddleFrame(QFrame):
 
         # 重写点击事件，加号
         label_img = QLabelImg(img_path=Const.add_icon_path, press_event_fn=lambda: self.add_btn_fn())
-
-        # 加号点击后出现的面板
-    #    self.middle_add_widget = MiddleAddWidget()
-
 
         h_layout.addWidget(label_title)
         h_layout.addStretch(1)
@@ -58,10 +53,6 @@ class MiddleFrame(QFrame):
 
     def add_btn_fn(self):
         """
-        点击新增按钮增加一格
+        显示增加弹出框
         """
-      #  self.q_grid_layout.addWidget(CardWidget(), 6, 0)
-        self.middle_add_widget.show()
-
-
-
+        GlobalContext.add_dialog().show()

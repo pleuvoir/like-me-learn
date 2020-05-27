@@ -92,6 +92,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(lmr_manager)
         self.context.setup(Const.key_lmr_manager, lmr_manager)
         self.context.setup(Const.key_middle_frame, lmr_manager.middle_frame)
+        self.context.setup(Const.key_right_frame, lmr_manager.right_frame)
         # 加号点击后出现的面板
         middle_add_dialog = MiddleAddDialog(lmr_manager)
         self.context.setup(Const.key_add_dialog, middle_add_dialog)

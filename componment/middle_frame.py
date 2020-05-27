@@ -24,6 +24,8 @@ class MiddleFrame(QFrame):
         # 水平布局，最上面
         h_layout = QHBoxLayout()
         label_title = QLabel('知识库')
+        label_title.setObjectName('MiddleFrame_label_title')
+        label_title.setStyleSheet("#MiddleFrame_label_title{font-size:21px}")
 
         # 重写点击事件，加号
         label_img = QLabelImg(img_path=Const.add_icon_path, press_event_fn=lambda: self.add_btn_fn())

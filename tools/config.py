@@ -13,11 +13,11 @@ except ImportError as e:
 
 class Const(object):
     # 默认窗口宽度
-    default_window_width = 1175
+    default_window_width = 1275
     # 默认窗口高度
     default_window_height = 685
     # 最小窗口宽度
-    min_window_width = 1050
+    min_window_width = 1150
     # 最小窗口高度
     min_window_height = 550
     # 左侧固定宽度
@@ -60,6 +60,8 @@ class Const(object):
     key_add_dialog = 'add_dialog'
     # 中部
     key_middle_frame = 'middle_frame'
+    # 右部
+    key_right_frame = 'right_frame'
 
 
 class GlobalContext(object):
@@ -99,3 +101,7 @@ class GlobalContext(object):
     @staticmethod
     def middle_frame():
         return GlobalContext.get_instance(Const.key_middle_frame)
+
+    @staticmethod
+    def right_frame():
+        return GlobalContext.get_instance(Const.key_right_frame)

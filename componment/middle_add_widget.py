@@ -3,10 +3,10 @@
 
 from PyQt5.QtCore import Qt, QPoint
 from PyQt5.QtWidgets import QVBoxLayout, QLabel, QLineEdit, QPushButton, \
-    QTextEdit, QDialog, QHBoxLayout
+    QTextEdit, QDialog, QHBoxLayout, QMessageBox
 
 from componment.card_widget import CardWidget
-from tools.config import GlobalContext
+from tools.config import GlobalContext, Const
 
 """
 这个窗口应该依附于中心窗口布局
@@ -51,7 +51,7 @@ class MiddleAddDialog(QDialog):
         lmr_manager_center = parent.frameGeometry().center()
 
         self.move(QPoint(lmr_manager_center.x(), 0))
-        # 设置了父窗体后默认此组件默认会显示，这里隐藏下
+        # 设置了父窗体后此组件默认会显示，这里隐藏下
         self.close()
 
     def cancel_slot(self):
@@ -60,8 +60,13 @@ class MiddleAddDialog(QDialog):
         self.close()
 
     def add_slot(self):
+        with open(Const.knowledge_folder_path, mode='a', encoding='utf-8') as f:
+            print(self.name_line.text() + '&&' + self.desc_line.toPlainText(), end='\n', file=f)
+        QMessageBox.information(self, 'information', '新建成功！', QMessageBox.Ok)
+
         GlobalContext.middle_frame().q_v_layout.addWidget(
             CardWidget(self.name_line.text(), self.desc_line.toPlainText()))
         self.name_line.setText('')
         self.desc_line.setText('')
+
         self.close()

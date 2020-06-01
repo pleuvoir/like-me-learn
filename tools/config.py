@@ -63,6 +63,9 @@ class Const(object):
     # 右部
     key_right_frame = 'right_frame'
 
+    # 知识库存储
+    knowledge_folder_path = 'knowledge_folder.txt'
+
 
 class GlobalContext(object):
     _dict = OrderedDict()

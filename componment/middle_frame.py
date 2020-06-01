@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QFrame, QVBoxLayout, QLabel, QHBoxLayout, QScrollArea, QWidget, QGridLayout
+from PyQt5.QtCore import Qt, pyqtSignal
+from PyQt5.QtWidgets import QFrame, QVBoxLayout, QLabel, QHBoxLayout, QScrollArea, QWidget
 
 from componment.card_widget import CardWidget
+from componment.cards_qthread import CardsThread
 from helper.qlabel_img import QLabelImg
 from tools.config import Const, GlobalContext
 
 
 class MiddleFrame(QFrame):
+    card_fill_result_signal = pyqtSignal(str, str)
 
     def __init__(self):
         super(MiddleFrame, self).__init__()
@@ -45,13 +47,23 @@ class MiddleFrame(QFrame):
         self.q_v_layout = QVBoxLayout(parent_card_widget)
         self.q_v_layout.setSpacing(10)
 
-        for i in range(5):
-            self.q_v_layout.addWidget(CardWidget(f'{i}标题', f'{i}描述'))
+        self.fill_cards()
 
         v_layout.addLayout(h_layout)
         v_layout.addWidget(card_area)
 
         self.setLayout(v_layout)
+
+    def fill_cards(self):
+        """
+        异步加载知识库区域的内容
+        """
+        self.card_fill_result_signal.connect(self.fill_cards_callback)
+        self.fill_card_thread = CardsThread(self.card_fill_result_signal)
+        self.fill_card_thread.start()
+
+    def fill_cards_callback(self, title, desc):
+        self.q_v_layout.addWidget(CardWidget(title, desc))
 
     def add_btn_fn(self):
         """
